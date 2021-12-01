@@ -126,6 +126,7 @@ public class Anomalous extends JFrame {
 				String playername = nametxt.getText();
 				JOptionPane.showMessageDialog(null, "Henlo Fren");
 				toppanel.hide();
+				//poop
 			}
 		});
 		start_btn.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
