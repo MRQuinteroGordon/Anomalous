@@ -80,12 +80,52 @@ public class Anomalous extends JFrame {
 		txtpnPleaseEnterYour.setBounds(26, 295, 409, 48);
 		contentPane.add(txtpnPleaseEnterYour);
 		
+		JPanel toppanel = new JPanel();
+		toppanel.setBounds(0, 11, 468, 235);
+		contentPane.add(toppanel);
+		toppanel.setLayout(null);
+		
+		JTextPane txtpnWelcomeTo = new JTextPane();
+		txtpnWelcomeTo.setBounds(156, 29, 156, 34);
+		toppanel.add(txtpnWelcomeTo);
+		txtpnWelcomeTo.setBackground(UIManager.getColor("Button.background"));
+		txtpnWelcomeTo.setEditable(false);
+		txtpnWelcomeTo.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		txtpnWelcomeTo.setText("Welcome to");
+		
+		JTextPane txtpnAnomalous = new JTextPane();
+		txtpnAnomalous.setBounds(14, 74, 440, 48);
+		toppanel.add(txtpnAnomalous);
+		txtpnAnomalous.setBackground(UIManager.getColor("Button.background"));
+		txtpnAnomalous.setEditable(false);
+		txtpnAnomalous.setForeground(new Color(255, 204, 51));
+		txtpnAnomalous.setFont(new Font("A Goblin Appears!", Font.BOLD, 42));
+		txtpnAnomalous.setText("ANOMALOUS");
+		
+		JTextPane txtpnAnInteractiveFiction = new JTextPane();
+		txtpnAnInteractiveFiction.setBounds(36, 155, 396, 34);
+		toppanel.add(txtpnAnInteractiveFiction);
+		txtpnAnInteractiveFiction.setBackground(UIManager.getColor("Button.background"));
+		txtpnAnInteractiveFiction.setEditable(false);
+		txtpnAnInteractiveFiction.setText("An Interactive Fiction Story");
+		txtpnAnInteractiveFiction.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		
+		JTextPane txtpnWithATwist = new JTextPane();
+		txtpnWithATwist.setBounds(131, 185, 205, 39);
+		toppanel.add(txtpnWithATwist);
+		txtpnWithATwist.setBackground(UIManager.getColor("Button.background"));
+		txtpnWithATwist.setEditable(false);
+		txtpnWithATwist.setText("with a twist!");
+		txtpnWithATwist.setForeground(new Color(204, 0, 0));
+		txtpnWithATwist.setFont(new Font("Nineteen Ninety Seven", Font.ITALIC, 24));
+		
 		JButton start_btn = new JButton("START");
 		start_btn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String playername = nametxt.getText();
 				JOptionPane.showMessageDialog(null, "Henlo Fren");
+				toppanel.hide();
 			}
 		});
 		start_btn.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
@@ -98,43 +138,6 @@ public class Anomalous extends JFrame {
 		contentPane.add(nametxt);
 		nametxt.setColumns(10);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 11, 468, 235);
-		contentPane.add(panel);
-		panel.setLayout(null);
 		
-		JTextPane txtpnWelcomeTo = new JTextPane();
-		txtpnWelcomeTo.setBounds(156, 29, 156, 34);
-		panel.add(txtpnWelcomeTo);
-		txtpnWelcomeTo.setBackground(UIManager.getColor("Button.background"));
-		txtpnWelcomeTo.setEditable(false);
-		txtpnWelcomeTo.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
-		txtpnWelcomeTo.setText("Welcome to");
-		
-		JTextPane txtpnAnomalous = new JTextPane();
-		txtpnAnomalous.setBounds(14, 74, 440, 48);
-		panel.add(txtpnAnomalous);
-		txtpnAnomalous.setBackground(UIManager.getColor("Button.background"));
-		txtpnAnomalous.setEditable(false);
-		txtpnAnomalous.setForeground(new Color(255, 204, 51));
-		txtpnAnomalous.setFont(new Font("A Goblin Appears!", Font.BOLD, 42));
-		txtpnAnomalous.setText("ANOMALOUS");
-		
-		JTextPane txtpnAnInteractiveFiction = new JTextPane();
-		txtpnAnInteractiveFiction.setBounds(36, 155, 396, 34);
-		panel.add(txtpnAnInteractiveFiction);
-		txtpnAnInteractiveFiction.setBackground(UIManager.getColor("Button.background"));
-		txtpnAnInteractiveFiction.setEditable(false);
-		txtpnAnInteractiveFiction.setText("An Interactive Fiction Story");
-		txtpnAnInteractiveFiction.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
-		
-		JTextPane txtpnWithATwist = new JTextPane();
-		txtpnWithATwist.setBounds(131, 185, 205, 39);
-		panel.add(txtpnWithATwist);
-		txtpnWithATwist.setBackground(UIManager.getColor("Button.background"));
-		txtpnWithATwist.setEditable(false);
-		txtpnWithATwist.setText("with a twist!");
-		txtpnWithATwist.setForeground(new Color(204, 0, 0));
-		txtpnWithATwist.setFont(new Font("Nineteen Ninety Seven", Font.ITALIC, 24));
 	}
 }
