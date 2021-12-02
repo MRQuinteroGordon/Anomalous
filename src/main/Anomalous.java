@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JTextPane;
@@ -17,16 +18,20 @@ import javax.swing.JSeparator;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class Anomalous extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField nametxt;
+	private JTextField txtfldName;
 
 	/**
 	 * Launch the application.
@@ -48,10 +53,11 @@ public class Anomalous extends JFrame {
 	 * Create the frame.
 	 */
 	public Anomalous() {
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(main.Anomalous.class.getResource("/anomalous/images/logo.png")));
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Anomalous.class.getResource("/images/logo.png")));
 		setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
 		setTitle("Anomalous.exe");
-		setBackground(Color.RED);
+		setBackground(Color.DARK_GRAY);
 		setForeground(new Color(0, 0, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 635);
@@ -61,83 +67,124 @@ public class Anomalous extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(204, 204, 204));
-		separator.setBackground(new Color(204, 204, 204));
-		separator.setBounds(0, 257, 440, 7);
-		contentPane.add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBackground(new Color(204, 204, 204));
-		separator_1.setBounds(0, 511, 450, 7);
-		contentPane.add(separator_1);
-		
-		JTextPane txtpnPleaseEnterYour = new JTextPane();
-		txtpnPleaseEnterYour.setBackground(UIManager.getColor("Button.background"));
-		txtpnPleaseEnterYour.setEditable(false);
-		txtpnPleaseEnterYour.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 18));
-		txtpnPleaseEnterYour.setText("Please enter your name to start:");
-		txtpnPleaseEnterYour.setBounds(26, 295, 409, 48);
-		contentPane.add(txtpnPleaseEnterYour);
-		
 		JPanel toppanel = new JPanel();
-		toppanel.setBounds(0, 11, 468, 235);
+		toppanel.setBackground(Color.WHITE);
+		toppanel.setBounds(6, 11, 468, 235);
 		contentPane.add(toppanel);
 		toppanel.setLayout(null);
 		
-		JTextPane txtpnWelcomeTo = new JTextPane();
-		txtpnWelcomeTo.setBounds(156, 29, 156, 34);
-		toppanel.add(txtpnWelcomeTo);
-		txtpnWelcomeTo.setBackground(UIManager.getColor("Button.background"));
-		txtpnWelcomeTo.setEditable(false);
-		txtpnWelcomeTo.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
-		txtpnWelcomeTo.setText("Welcome to");
+		JTextPane txtAnomalous = new JTextPane();
+		txtAnomalous.setBounds(20, 75, 427, 48);
+		toppanel.add(txtAnomalous);
+		txtAnomalous.setBackground(Color.WHITE);
+		txtAnomalous.setEditable(false);
+		txtAnomalous.setForeground(new Color(255, 204, 51));
+		txtAnomalous.setFont(new Font("A Goblin Appears!", Font.BOLD, 42));
+		txtAnomalous.setText("ANOMALOUS");
 		
-		JTextPane txtpnAnomalous = new JTextPane();
-		txtpnAnomalous.setBounds(14, 74, 440, 48);
-		toppanel.add(txtpnAnomalous);
-		txtpnAnomalous.setBackground(UIManager.getColor("Button.background"));
-		txtpnAnomalous.setEditable(false);
-		txtpnAnomalous.setForeground(new Color(255, 204, 51));
-		txtpnAnomalous.setFont(new Font("A Goblin Appears!", Font.BOLD, 42));
-		txtpnAnomalous.setText("ANOMALOUS");
+		JTextPane txtWelcome = new JTextPane();
+		txtWelcome.setBounds(156, 29, 156, 34);
+		toppanel.add(txtWelcome);
+		txtWelcome.setBackground(Color.WHITE);
+		txtWelcome.setEditable(false);
+		txtWelcome.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		txtWelcome.setText("Welcome to");
 		
-		JTextPane txtpnAnInteractiveFiction = new JTextPane();
-		txtpnAnInteractiveFiction.setBounds(36, 155, 396, 34);
-		toppanel.add(txtpnAnInteractiveFiction);
-		txtpnAnInteractiveFiction.setBackground(UIManager.getColor("Button.background"));
-		txtpnAnInteractiveFiction.setEditable(false);
-		txtpnAnInteractiveFiction.setText("An Interactive Fiction Story");
-		txtpnAnInteractiveFiction.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		JTextPane txtIntFict = new JTextPane();
+		txtIntFict.setBounds(36, 155, 396, 34);
+		toppanel.add(txtIntFict);
+		txtIntFict.setBackground(Color.WHITE);
+		txtIntFict.setEditable(false);
+		txtIntFict.setText("An Interactive Fiction Story");
+		txtIntFict.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
 		
-		JTextPane txtpnWithATwist = new JTextPane();
-		txtpnWithATwist.setBounds(131, 185, 205, 39);
-		toppanel.add(txtpnWithATwist);
-		txtpnWithATwist.setBackground(UIManager.getColor("Button.background"));
-		txtpnWithATwist.setEditable(false);
-		txtpnWithATwist.setText("with a twist!");
-		txtpnWithATwist.setForeground(new Color(204, 0, 0));
-		txtpnWithATwist.setFont(new Font("Nineteen Ninety Seven", Font.ITALIC, 24));
+		JTextPane txtTwist = new JTextPane();
+		txtTwist.setBounds(131, 185, 205, 39);
+		toppanel.add(txtTwist);
+		txtTwist.setBackground(Color.WHITE);
+		txtTwist.setEditable(false);
+		txtTwist.setText("with a twist!");
+		txtTwist.setForeground(new Color(204, 0, 0));
+		txtTwist.setFont(new Font("Nineteen Ninety Seven", Font.ITALIC, 24));
 		
-		JButton start_btn = new JButton("START");
-		start_btn.addMouseListener(new MouseAdapter() {
+		JTextPane txtAnomalous_1 = new JTextPane();
+		txtAnomalous_1.setText("ANOMALOUS");
+		txtAnomalous_1.setForeground(new Color(204, 204, 204));
+		txtAnomalous_1.setFont(new Font("A Goblin Appears!", Font.BOLD, 42));
+		txtAnomalous_1.setEditable(false);
+		txtAnomalous_1.setBackground(Color.WHITE);
+		txtAnomalous_1.setBounds(20, 85, 427, 48);
+		toppanel.add(txtAnomalous_1);
+		
+		JPanel startpanel = new JPanel();
+		startpanel.setBounds(8, 276, 464, 235);
+		contentPane.add(startpanel);
+		startpanel.setLayout(null);
+		
+		JTextPane txtEnterName = new JTextPane();
+		txtEnterName.setBounds(27, 23, 409, 48);
+		startpanel.add(txtEnterName);
+		txtEnterName.setBackground(UIManager.getColor("Button.background"));
+		txtEnterName.setEditable(false);
+		txtEnterName.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 18));
+		txtEnterName.setText("Please enter your name to start:");
+		
+		txtfldName = new JTextField();
+		txtfldName.setHorizontalAlignment(SwingConstants.LEFT);
+		txtfldName.setForeground(new Color(153, 0, 0));
+		txtfldName.setToolTipText("Enter Name Here");
+		txtfldName.setBounds(122, 76, 219, 29);
+		startpanel.add(txtfldName);
+		txtfldName.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 16));
+		txtfldName.setColumns(10);
+		
+		JButton btnStart = new JButton("START");
+		btnStart.setBounds(150, 117, 163, 34);
+		startpanel.add(btnStart);
+		btnStart.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
+		
+		JPanel avatarPanel = new JPanel();
+		avatarPanel.setBounds(6, 508, 468, 93);
+		contentPane.add(avatarPanel);
+		avatarPanel.setLayout(null);
+		avatarPanel.setBackground(Color.WHITE);
+		
+		JLabel lblAvatar = new JLabel("");
+		lblAvatar.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblAvatar.setIcon(new ImageIcon(Anomalous.class.getResource("/images/netscape_logo.gif")));
+		lblAvatar.setBounds(281, 62, 88, 31);
+		avatarPanel.add(lblAvatar);
+		
+		JLabel lbl_ieLogo = new JLabel("");
+		lbl_ieLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbl_ieLogo.setIcon(new ImageIcon(Anomalous.class.getResource("/images/ie_logo.gif")));
+		lbl_ieLogo.setBounds(374, 62, 88, 31);
+		avatarPanel.add(lbl_ieLogo);
+		
+		JLabel lbl_powerby = new JLabel("Powered By:");
+		lbl_powerby.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
+		lbl_powerby.setBounds(328, 41, 80, 25);
+		avatarPanel.add(lbl_powerby);
+		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String playername = nametxt.getText();
-				JOptionPane.showMessageDialog(null, "Henlo Fren");
+				String playername = txtfldName.getText();
+				UNGenerator ungen = new UNGenerator(playername);
+				Player player = new Player(playername, ungen.username);
+				
+				JOptionPane.showMessageDialog(null, "Henlo Fren!\nYour username was automatically generated\nbased off of your name, " + player.name + ", and is:\n" + player.username);
 				toppanel.hide();
+				startpanel.hide();
+				
+//				String dialupSound = "dialup.wav";
+//				musicStuff musicObject = new musicStuff();
+//				musicObject.playMusic(dialupSound);
+//				JOptionPane.showMessageDialog(null, "Signing in... ");
+				
 				//poop
 			}
 		});
-		start_btn.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
-		start_btn.setBounds(149, 383, 163, 34);
-		contentPane.add(start_btn);
 		
-		nametxt = new JTextField();
-		nametxt.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 16));
-		nametxt.setBounds(121, 333, 219, 38);
-		contentPane.add(nametxt);
-		nametxt.setColumns(10);
 		
 		
 	}
