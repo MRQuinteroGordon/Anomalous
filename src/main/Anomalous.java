@@ -175,6 +175,7 @@ public class Anomalous extends JFrame {
 				JOptionPane.showMessageDialog(null, "Henlo Fren!\nYour username was automatically generated\nbased off of your name, " + player.name + ", and is:\n" + player.username);
 				toppanel.hide();
 				startpanel.hide();
+				StoryLinkedList story = new StoryLinkedList();
 				
 //				String dialupSound = "dialup.wav";
 //				musicStuff musicObject = new musicStuff();
