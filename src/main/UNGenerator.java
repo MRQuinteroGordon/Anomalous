@@ -28,8 +28,8 @@ public class UNGenerator {
 //		System.out.println(charNum1 + " " + charNum2 + " " + charNum3);
 		
 		this.elem1 = nameElements[0][(charNum1%12)];
-		this.elem2 = nameElements[1][(charNum1%10)];
-		this.elem3 = nameElements[2][(charNum1%11)];
+		this.elem2 = nameElements[1][(charNum2%10)];
+		this.elem3 = nameElements[2][(charNum3%11)];
 //		System.out.println(this.elem1 + this.elem2 + this.elem3);
 		this.username = this.elem1 + this.elem2 + this.elem3;
 		
