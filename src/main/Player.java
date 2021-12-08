@@ -21,7 +21,14 @@ public class Player {
 		this.date = myObj.toString();
 //	    System.out.println(myObj); // Display the current date
 //		System.out.println("today's date is: " + this.date);
-		this.name = pname;
+		if(pname.length() > 11) {
+			this.name = pname.substring(0, 11);
+		}
+		else {
+			this.name = pname;
+		}
+		
+		
 		this.username = puname;
 	}
 	

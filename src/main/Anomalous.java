@@ -80,12 +80,42 @@ public class Anomalous extends JFrame {
 		setBackground(Color.DARK_GRAY);
 		setForeground(new Color(0, 0, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1459, 653);
+		setBounds(100, 100, 480, 653);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Button.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPanel avatarPanel = new JPanel();
+		avatarPanel.setBounds(6, 523, 468, 93);
+		contentPane.add(avatarPanel);
+		avatarPanel.setLayout(null);
+		avatarPanel.setBackground(Color.WHITE);
+		
+		JLabel lblNetscape = new JLabel("");
+		lblNetscape.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNetscape.setIcon(new ImageIcon(Anomalous.class.getResource("/images/netscape_logo.gif")));
+		lblNetscape.setBounds(281, 56, 88, 31);
+		avatarPanel.add(lblNetscape);
+		
+		JLabel lbl_ieLogo = new JLabel("");
+		lbl_ieLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbl_ieLogo.setIcon(new ImageIcon(Anomalous.class.getResource("/images/ie_logo.gif")));
+		lbl_ieLogo.setBounds(374, 56, 88, 31);
+		avatarPanel.add(lbl_ieLogo);
+		
+		JLabel lbl_powerby = new JLabel("Powered By:");
+		lbl_powerby.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
+		lbl_powerby.setBounds(328, 35, 80, 25);
+		avatarPanel.add(lbl_powerby);
+		
+		JLabel lblAvatar = new JLabel("");
+		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAvatar.setIcon(new ImageIcon(Anomalous.class.getResource("/images/tina-original.jpeg")));
+		lblAvatar.setBounds(16, 14, 67, 64);
+		avatarPanel.add(lblAvatar);
+		lblAvatar.setVisible(false);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setBackground(Color.WHITE);
@@ -137,7 +167,7 @@ public class Anomalous extends JFrame {
 		topPanel.add(txtAnomalous_1);
 		
 		JPanel startPanel = new JPanel();
-		startPanel.setBounds(8, 276, 464, 235);
+		startPanel.setBounds(6, 276, 468, 235);
 		contentPane.add(startPanel);
 		startPanel.setLayout(null);
 		
@@ -163,38 +193,9 @@ public class Anomalous extends JFrame {
 		startPanel.add(btnStart);
 		btnStart.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
 		
-		JPanel avatarPanel = new JPanel();
-		avatarPanel.setBounds(6, 523, 468, 93);
-		contentPane.add(avatarPanel);
-		avatarPanel.setLayout(null);
-		avatarPanel.setBackground(Color.WHITE);
-		
-		JLabel lblNetscape = new JLabel("");
-		lblNetscape.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNetscape.setIcon(new ImageIcon(Anomalous.class.getResource("/images/netscape_logo.gif")));
-		lblNetscape.setBounds(281, 56, 88, 31);
-		avatarPanel.add(lblNetscape);
-		
-		JLabel lbl_ieLogo = new JLabel("");
-		lbl_ieLogo.setVerticalAlignment(SwingConstants.BOTTOM);
-		lbl_ieLogo.setIcon(new ImageIcon(Anomalous.class.getResource("/images/ie_logo.gif")));
-		lbl_ieLogo.setBounds(374, 56, 88, 31);
-		avatarPanel.add(lbl_ieLogo);
-		
-		JLabel lbl_powerby = new JLabel("Powered By:");
-		lbl_powerby.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
-		lbl_powerby.setBounds(328, 35, 80, 25);
-		avatarPanel.add(lbl_powerby);
-		
-		JLabel lblAvatar = new JLabel("");
-		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAvatar.setIcon(new ImageIcon(Anomalous.class.getResource("/images/tina-original.jpeg")));
-		lblAvatar.setBounds(16, 14, 67, 64);
-		avatarPanel.add(lblAvatar);
-		
 		JPanel storyPanel = new JPanel();
 		storyPanel.setBackground(Color.WHITE);
-		storyPanel.setBounds(486, 11, 468, 235);
+		storyPanel.setBounds(6, 11, 468, 235);
 		contentPane.add(storyPanel);
 		storyPanel.setLayout(null);
 		
@@ -207,7 +208,7 @@ public class Anomalous extends JFrame {
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setBounds(484, 276, 468, 235);
+		buttonPanel.setBounds(6, 276, 468, 235);
 		contentPane.add(buttonPanel);
 		buttonPanel.setLayout(null);
 		
@@ -271,7 +272,7 @@ public class Anomalous extends JFrame {
 		
 		JPanel reportPanel = new JPanel();
 		reportPanel.setBackground(new Color(255, 255, 255));
-		reportPanel.setBounds(965, 11, 468, 376);
+		reportPanel.setBounds(6, 11, 468, 376);
 		contentPane.add(reportPanel);
 		reportPanel.setLayout(null);
 		
@@ -312,13 +313,17 @@ public class Anomalous extends JFrame {
 		reportPanel.add(txtfldUserName);
 		
 		JTextArea txtPlayerHistReport = new JTextArea();
+		txtPlayerHistReport.setBackground(SystemColor.activeCaption);
+		txtPlayerHistReport.setForeground(SystemColor.desktop);
+		txtPlayerHistReport.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
+		txtPlayerHistReport.setEditable(false);
 		txtPlayerHistReport.setBounds(6, 6, 456, 550);
 		reportPanel.add(txtPlayerHistReport);
 		txtPlayerHistReport.setVisible(false);
 		
 		JPanel finalScorePanel = new JPanel();
 		finalScorePanel.setBackground(SystemColor.activeCaption);
-		finalScorePanel.setBounds(964, 399, 468, 154);
+		finalScorePanel.setBounds(6, 399, 468, 154);
 		contentPane.add(finalScorePanel);
 		finalScorePanel.setLayout(null);
 		
@@ -400,7 +405,7 @@ public class Anomalous extends JFrame {
 		finalScorePanel.add(txtAscore);
 		
 		JPanel playerHistbtnPanel = new JPanel();
-		playerHistbtnPanel.setBounds(965, 552, 468, 67);
+		playerHistbtnPanel.setBounds(6, 552, 468, 67);
 		contentPane.add(playerHistbtnPanel);
 		playerHistbtnPanel.setLayout(null);
 		
@@ -409,10 +414,10 @@ public class Anomalous extends JFrame {
 		playerHistbtnPanel.add(btnPlayerHist);
 		btnPlayerHist.setBackground(new Color(255, 204, 51));
 		btnPlayerHist.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
+		btnPlayerHist.setVisible(false);
 		
 		storyPanel.setVisible(false);
 		buttonPanel.setVisible(false);
-		lblAvatar.setVisible(false);
 		reportPanel.setVisible(false);
 		finalScorePanel.setVisible(false);
 		
@@ -476,8 +481,10 @@ public class Anomalous extends JFrame {
 							storyPanel.setVisible(false);
 							buttonPanel.setVisible(false);
 							lblAvatar.setVisible(false);
+							avatarPanel.setVisible(false);
 							reportPanel.setVisible(true);
 							finalScorePanel.setVisible(true);
+							playerHistbtnPanel.setVisible(true);
 							txtKscore.setText(String.valueOf(player.kind));
 							txtSscore.setText(String.valueOf(player.saddistic));
 							txtAscore.setText(String.valueOf(player.adventurous));
@@ -490,6 +497,7 @@ public class Anomalous extends JFrame {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
+							btnPlayerHist.setVisible(true);
 							
 						}
 						
@@ -515,8 +523,10 @@ public class Anomalous extends JFrame {
 							storyPanel.setVisible(false);
 							buttonPanel.setVisible(false);
 							lblAvatar.setVisible(false);
+							avatarPanel.setVisible(false);
 							reportPanel.setVisible(true);
 							finalScorePanel.setVisible(true);
+							playerHistbtnPanel.setVisible(true);
 							txtKscore.setText(String.valueOf(player.kind));
 							txtSscore.setText(String.valueOf(player.saddistic));
 							txtAscore.setText(String.valueOf(player.adventurous));
@@ -529,6 +539,7 @@ public class Anomalous extends JFrame {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
+							btnPlayerHist.setVisible(true);
 							
 							
 						}
@@ -557,8 +568,10 @@ public class Anomalous extends JFrame {
 							storyPanel.setVisible(false);
 							buttonPanel.setVisible(false);
 							lblAvatar.setVisible(false);
+							avatarPanel.setVisible(false);
 							reportPanel.setVisible(true);
 							finalScorePanel.setVisible(true);
+							playerHistbtnPanel.setVisible(true);
 							txtKscore.setText(String.valueOf(player.kind));
 							txtSscore.setText(String.valueOf(player.saddistic));
 							txtAscore.setText(String.valueOf(player.adventurous));
@@ -571,6 +584,7 @@ public class Anomalous extends JFrame {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
+							btnPlayerHist.setVisible(true);
 						}
 					}
 				});
@@ -588,12 +602,18 @@ public class Anomalous extends JFrame {
 				txtPersonalityReport.setVisible(false);
 				txtfldUserName.setVisible(false);
 				txtPlayerHistReport.setVisible(true);
-				reportPanel.setBounds(965, 11, 468, 550);
-				try {
-					History.loadList();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+				txtPlayerHistReport.setBackground(new Color(0, 0, 0));
+				reportPanel.setBackground(new Color(0, 0, 0));
+				contentPane.setBackground(new Color(0, 0, 0));
+				reportPanel.setBounds(6, 11, 468, 550);
+				
+				//CALL METHOD THAT INSERTS DATA INTO txtPlayerHistReport
+				txtPlayerHistReport.setText(histReport());
+//				try {
+//					History.loadList();
+//				} catch (SQLException e1) {
+//					e1.printStackTrace();
+//				}
 			}
 		});
 		
@@ -700,6 +720,29 @@ public class Anomalous extends JFrame {
 			return stuff;
 		}
 	}
+	
+	
+	public String histReport() {
+		//txtPlayerHistReport is where report should be populated
+
+		try {
+			String[][] hstRpt = History.loadList();
+			String rptContent = "";
+			for (int i = 0; i < hstRpt.length; i++) {
+				for (int j = 0; j < hstRpt[0].length; j++) {
+					rptContent += hstRpt[i][j] + "\t";
+				}
+				rptContent += "\n";
+			}
+			return rptContent;
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return "oopsie.  Didn't work!";
+	}
 }
+
 
 
