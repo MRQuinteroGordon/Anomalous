@@ -15,12 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,18 +32,25 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.Button;
 import javax.swing.border.LineBorder;
+import java.awt.Component;
+import java.awt.SystemColor;
 
 public class Anomalous extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtfldEnterName;
 	Player player;
-	StoryLinkedList story;
+//	StoryLinkedList story;
+	StoryLinkedList2 story2;
 	String playerName;
 	private JTextField txtFinalHeader;
 	private JTextField txtKindlbl;
 	private JTextField txtSadLbl;
 	private JTextField txtAdvLbl;
+	private JTextField txtKscore;
+	private JTextField txtSscore;
+	private JTextField txtAscore;
+	private JTextField txtfldUserName;
 
 	/**
 	 * Launch the application.
@@ -235,21 +244,25 @@ public class Anomalous extends JFrame {
 		btnOptC.setBounds(6, 169, 117, 29);
 		buttonPanel.add(btnOptC);
 		
-		JTextPane txtOptA = new JTextPane();
+//		JTextPane txtOptA = new JTextPane();
+		JTextArea txtOptA = new JTextArea();
+		txtOptA.setLineWrap(true);
 		txtOptA.setEditable(false);
 		txtOptA.setText("Hit the snooze button.  You only need five more minutes… plus another twenty-five minutes… maybe plus another fifteen more. ");
 		txtOptA.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
 		txtOptA.setBounds(124, 24, 326, 55);
 		buttonPanel.add(txtOptA);
 		
-		JTextPane txtOptB = new JTextPane();
+		JTextArea txtOptB = new JTextArea();
+		txtOptB.setLineWrap(true);
 		txtOptB.setEditable(false);
 		txtOptB.setText("Smash the dismiss button.  Bracing yourself for the shock of the cold air, you throw off your blanket. Whew! It’s great to be alive!");
 		txtOptB.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
 		txtOptB.setBounds(124, 91, 326, 55);
 		buttonPanel.add(txtOptB);
 		
-		JTextPane txtOptC = new JTextPane();
+		JTextArea txtOptC = new JTextArea();
+		txtOptC.setLineWrap(true);
 		txtOptC.setEditable(false);
 		txtOptC.setText("Carefully press the dismiss button. Your bed is beckoning you but you need to get to school early for the theatre club presidency meeting. ");
 		txtOptC.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
@@ -258,39 +271,60 @@ public class Anomalous extends JFrame {
 		
 		JPanel reportPanel = new JPanel();
 		reportPanel.setBackground(new Color(255, 255, 255));
-		reportPanel.setBounds(965, 11, 468, 354);
+		reportPanel.setBounds(965, 11, 468, 376);
 		contentPane.add(reportPanel);
 		reportPanel.setLayout(null);
 		
-		JTextPane txtCongrats = new JTextPane();
+//		JTextPane txtCongrats = new JTextPane();
+		JTextField txtCongrats = new JTextField();
+		txtCongrats.setBorder(null);
+		txtCongrats.setHorizontalAlignment(SwingConstants.CENTER);
+//		JTextArea txtCongrats = new JTextArea();
 		txtCongrats.setEditable(false);
 		txtCongrats.setForeground(new Color(153, 0, 0));
 		txtCongrats.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
-		txtCongrats.setText("Congratulations!");
-		txtCongrats.setBounds(120, 6, 228, 28);
+		txtCongrats.setText("Congratulations");
+		txtCongrats.setBounds(111, 6, 246, 33);
 		reportPanel.add(txtCongrats);
 		
 		JLabel lblBelcherPic = new JLabel("");
+		lblBelcherPic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBelcherPic.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		lblBelcherPic.setIcon(new ImageIcon(Anomalous.class.getResource("/images/tina-original.jpeg")));
-		lblBelcherPic.setBounds(38, 50, 392, 209);
+		lblBelcherPic.setBounds(38, 72, 392, 209);
 		reportPanel.add(lblBelcherPic);
 		
 		JTextPane txtPersonalityReport = new JTextPane();
 		txtPersonalityReport.setEditable(false);
 		txtPersonalityReport.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 14));
 		txtPersonalityReport.setText("You finished the game with the highest score in the kindness trait.  This means you are just like Tina Belcher - sweet, smart, and sensual! ");
-		txtPersonalityReport.setBounds(6, 268, 456, 80);
+		txtPersonalityReport.setBounds(6, 290, 456, 80);
 		reportPanel.add(txtPersonalityReport);
 		
+		txtfldUserName = new JTextField();
+		txtfldUserName.setBorder(null);
+		txtfldUserName.setText("Username!");
+		txtfldUserName.setHorizontalAlignment(SwingConstants.CENTER);
+		txtfldUserName.setForeground(new Color(153, 0, 0));
+		txtfldUserName.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		txtfldUserName.setEditable(false);
+		txtfldUserName.setBounds(111, 39, 246, 33);
+		reportPanel.add(txtfldUserName);
+		
+		JTextArea txtPlayerHistReport = new JTextArea();
+		txtPlayerHistReport.setBounds(6, 6, 456, 550);
+		reportPanel.add(txtPlayerHistReport);
+		txtPlayerHistReport.setVisible(false);
+		
 		JPanel finalScorePanel = new JPanel();
-		finalScorePanel.setBackground(new Color(255, 255, 255));
-		finalScorePanel.setBounds(964, 374, 468, 242);
+		finalScorePanel.setBackground(SystemColor.activeCaption);
+		finalScorePanel.setBounds(964, 399, 468, 154);
 		contentPane.add(finalScorePanel);
 		finalScorePanel.setLayout(null);
 		
 		txtFinalHeader = new JTextField();
-		txtFinalHeader.setBounds(84, 6, 300, 38);
+		txtFinalHeader.setBorder(null);
+		txtFinalHeader.setBounds(84, 6, 300, 31);
 		finalScorePanel.add(txtFinalHeader);
 		txtFinalHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		txtFinalHeader.setForeground(new Color(153, 0, 0));
@@ -300,48 +334,106 @@ public class Anomalous extends JFrame {
 		txtFinalHeader.setColumns(10);
 		
 		txtKindlbl = new JTextField();
+		txtKindlbl.setBorder(null);
 		txtKindlbl.setEditable(false);
-		txtKindlbl.setHorizontalAlignment(SwingConstants.LEFT);
-		txtKindlbl.setText("KIND: 250");
+		txtKindlbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtKindlbl.setText("AWKWARD/KIND:");
 		txtKindlbl.setForeground(new Color(0, 0, 0));
 		txtKindlbl.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 16));
-		txtKindlbl.setBounds(8, 52, 187, 38);
+		txtKindlbl.setBounds(120, 32, 132, 28);
 		finalScorePanel.add(txtKindlbl);
 		txtKindlbl.setColumns(10);
 		
 		txtSadLbl = new JTextField();
-		txtSadLbl.setText("SADDISTIC: 200");
-		txtSadLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		txtSadLbl.setBorder(null);
+		txtSadLbl.setText("SADDISTIC:");
+		txtSadLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtSadLbl.setForeground(new Color(0, 0, 0));
 		txtSadLbl.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 16));
 		txtSadLbl.setEditable(false);
 		txtSadLbl.setColumns(10);
-		txtSadLbl.setBounds(8, 92, 187, 38);
+		txtSadLbl.setBounds(120, 59, 132, 28);
 		finalScorePanel.add(txtSadLbl);
 		
 		txtAdvLbl = new JTextField();
-		txtAdvLbl.setText("ADVENTUROUS: 300");
-		txtAdvLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		txtAdvLbl.setBorder(null);
+		txtAdvLbl.setText("ADVENTUROUS:");
+		txtAdvLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtAdvLbl.setForeground(new Color(0, 0, 0));
 		txtAdvLbl.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 16));
 		txtAdvLbl.setEditable(false);
 		txtAdvLbl.setColumns(10);
-		txtAdvLbl.setBounds(8, 132, 187, 38);
+		txtAdvLbl.setBounds(120, 85, 132, 28);
 		finalScorePanel.add(txtAdvLbl);
+		
+		txtKscore = new JTextField();
+		txtKscore.setText("score");
+		txtKscore.setHorizontalAlignment(SwingConstants.CENTER);
+		txtKscore.setForeground(Color.BLACK);
+		txtKscore.setFont(new Font("Nineteen Ninety Three", Font.BOLD, 16));
+		txtKscore.setEditable(false);
+		txtKscore.setColumns(10);
+		txtKscore.setBorder(null);
+		txtKscore.setBounds(261, 32, 84, 28);
+		finalScorePanel.add(txtKscore);
+		
+		txtSscore = new JTextField();
+		txtSscore.setText("score");
+		txtSscore.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSscore.setForeground(Color.BLACK);
+		txtSscore.setFont(new Font("Nineteen Ninety Three", Font.BOLD, 16));
+		txtSscore.setEditable(false);
+		txtSscore.setColumns(10);
+		txtSscore.setBorder(null);
+		txtSscore.setBounds(261, 59, 84, 28);
+		finalScorePanel.add(txtSscore);
+		
+		txtAscore = new JTextField();
+		txtAscore.setText("score");
+		txtAscore.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAscore.setForeground(Color.BLACK);
+		txtAscore.setFont(new Font("Nineteen Ninety Three", Font.BOLD, 16));
+		txtAscore.setEditable(false);
+		txtAscore.setColumns(10);
+		txtAscore.setBorder(null);
+		txtAscore.setBounds(261, 85, 84, 28);
+		finalScorePanel.add(txtAscore);
+		
+		JPanel playerHistbtnPanel = new JPanel();
+		playerHistbtnPanel.setBounds(965, 552, 468, 67);
+		contentPane.add(playerHistbtnPanel);
+		playerHistbtnPanel.setLayout(null);
+		
+		JButton btnPlayerHist = new JButton("PAST GAMER SCORES");
+		btnPlayerHist.setBounds(42, 18, 384, 31);
+		playerHistbtnPanel.add(btnPlayerHist);
+		btnPlayerHist.setBackground(new Color(255, 204, 51));
+		btnPlayerHist.setFont(new Font("Nineteen Ninety Seven", Font.BOLD, 20));
 		
 		storyPanel.setVisible(false);
 		buttonPanel.setVisible(false);
 		lblAvatar.setVisible(false);
+		reportPanel.setVisible(false);
+		finalScorePanel.setVisible(false);
+		
 		
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				playerName = txtfldEnterName.getText();
-				UNGenerator ungen = new UNGenerator(playerName);
-				player = new Player(playerName, ungen.username);
-				
 				UIManager.put("OptionPane.messageFont", new Font("Nineteen Ninety Seven", Font.PLAIN, 16));
 				UIManager.put("OptionPane.buttonFont", new Font("Nineteen Ninety Three", Font.PLAIN, 12));
+				playerName = txtfldEnterName.getText();
+				if (playerName.length() < 3) {
+					UNGenerator ungen = new UNGenerator("Turd Ferguson");
+					JOptionPane.showMessageDialog(null, "Your name must be at least 3 characters long.  Don't worry though, I will give you a default.");
+					player = new Player(playerName, ungen.username);
+				}
+				else {
+					UNGenerator ungen = new UNGenerator(playerName);
+					player = new Player(playerName, ungen.username);
+				}
+				
+				
 				JOptionPane.showMessageDialog(null, "Welcome " + player.name + "!\nYour username is: " + player.username);
 
 				topPanel.setVisible(false);
@@ -359,64 +451,50 @@ public class Anomalous extends JFrame {
 				lblAvatar.setVisible(true);
 				
 				try {
-					story = new StoryLinkedList();
-					story.printList();
-				} catch (SQLException e2) {
+					story2 = new StoryLinkedList2();
+				}
+				catch (SQLException e2) {
 					e2.printStackTrace();
 				}
-//				System.out.println(story.head.storyPart);
 				
-//				try {
-//					player.saveData();
-//				} catch (SQLException e1) {
-//					e1.printStackTrace();
-//				}
-				
-//				String dialupSound = "dialup.wav";
-//				musicStuff musicObject = new musicStuff();
-//				musicObject.playMusic(dialupSound);
-				
-				
-				
-//					btnOptA.addMouseListener(new MouseAdapter() {
-//						@Override
-//						public void mouseClicked(MouseEvent e) {
-//							player.kind += 10;
-//							txtStory.setText(story.head.storyTxt[player.max()]);
-//							player.printScores();
-//							System.out.println("max is: " + player.max());
-//						}
-//					});
-//					
-//					btnOptB.addMouseListener(new MouseAdapter() {
-//						@Override
-//						public void mouseClicked(MouseEvent e) {
-//							player.saddistic += 10;
-//							txtStory.setText(story.head.storyTxt[player.max()]);
-//							player.printScores();
-//							System.out.println("max is: " + player.max());
-//						}
-//					});
-//					
-//					btnOptC.addMouseListener(new MouseAdapter() {
-//						@Override
-//						public void mouseClicked(MouseEvent e) {
-//							player.adventurous += 10;
-//							txtStory.setText(story.head.storyTxt[player.max()]);
-//							player.printScores();
-//							System.out.println("max is: " + player.max());
-//						}
-//					});
-				
-				
+
 				
 				btnOptA.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
 						player.kind += 10;
-						txtStory.setText(story.head.storyTxt[player.max()]);
-						player.printScores();
-						System.out.println("max is: " + player.max());
+						StoryNode2 current = story2.traverseList();
+						if (current != null) {
+							txtStory.setText(current.storyTxta);
+							txtOptA.setText(current.actionTxta);
+							txtOptB.setText(current.actionTxtb);
+							txtOptC.setText(current.actionTxtc);
+							player.printScores();
+							System.out.println("max is: " + player.max());
+						}
+						else {
+							storyPanel.setVisible(false);
+							buttonPanel.setVisible(false);
+							lblAvatar.setVisible(false);
+							reportPanel.setVisible(true);
+							finalScorePanel.setVisible(true);
+							txtKscore.setText(String.valueOf(player.kind));
+							txtSscore.setText(String.valueOf(player.saddistic));
+							txtAscore.setText(String.valueOf(player.adventurous));
+							txtfldUserName.setText(player.username + "!");
+							String[] reportStuff = report(player.max());
+							txtPersonalityReport.setText(reportStuff[0]);
+							lblBelcherPic.setIcon(new ImageIcon(Anomalous.class.getResource(reportStuff[1])));
+							try {
+								player.saveData();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+							
+						}
+						
+
+						
 					}
 				});
 				
@@ -424,7 +502,39 @@ public class Anomalous extends JFrame {
 					@Override
 					public void mousePressed(MouseEvent e) {
 						player.saddistic += 10;
-						txtStory.setText(story.head.storyTxt[player.max()]);
+						StoryNode2 current = story2.traverseList();
+						if (current != null) {
+							txtStory.setText(current.storyTxtb);
+							txtOptA.setText(current.actionTxta);
+							txtOptB.setText(current.actionTxtb);
+							txtOptC.setText(current.actionTxtc);
+							player.printScores();
+							System.out.println("max is: " + player.max());
+						}
+						else {
+							storyPanel.setVisible(false);
+							buttonPanel.setVisible(false);
+							lblAvatar.setVisible(false);
+							reportPanel.setVisible(true);
+							finalScorePanel.setVisible(true);
+							txtKscore.setText(String.valueOf(player.kind));
+							txtSscore.setText(String.valueOf(player.saddistic));
+							txtAscore.setText(String.valueOf(player.adventurous));
+							txtfldUserName.setText(player.username + "!");
+							String[] reportStuff = report(player.max());
+							txtPersonalityReport.setText(reportStuff[0]);
+							lblBelcherPic.setIcon(new ImageIcon(Anomalous.class.getResource(reportStuff[1])));
+							try {
+								player.saveData();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+							
+							
+						}
+						
+//						txtStory.setText(story.head.storyTxt[player.max()]);
+//						txtStory.setText(story.traverseList().storyTxt[player.max()]);
 						player.printScores();
 						System.out.println("max is: " + player.max());
 					}
@@ -434,12 +544,56 @@ public class Anomalous extends JFrame {
 					@Override
 					public void mousePressed(MouseEvent e) {
 						player.adventurous += 10;
-						txtStory.setText(story.head.storyTxt[player.max()]);
-						player.printScores();
-						System.out.println("max is: " + player.max());
+						StoryNode2 current = story2.traverseList();
+						if (current != null) {
+							txtStory.setText(current.storyTxtc);
+							txtOptA.setText(current.actionTxta);
+							txtOptB.setText(current.actionTxtb);
+							txtOptC.setText(current.actionTxtc);
+							player.printScores();
+							System.out.println("max is: " + player.max());
+						}
+						else {
+							storyPanel.setVisible(false);
+							buttonPanel.setVisible(false);
+							lblAvatar.setVisible(false);
+							reportPanel.setVisible(true);
+							finalScorePanel.setVisible(true);
+							txtKscore.setText(String.valueOf(player.kind));
+							txtSscore.setText(String.valueOf(player.saddistic));
+							txtAscore.setText(String.valueOf(player.adventurous));
+							txtfldUserName.setText(player.username + "!");
+							String[] reportStuff = report(player.max());
+							txtPersonalityReport.setText(reportStuff[0]);
+							lblBelcherPic.setIcon(new ImageIcon(Anomalous.class.getResource(reportStuff[1])));
+							try {
+								player.saveData();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+						}
 					}
 				});
 					
+			}
+		});
+		
+		btnPlayerHist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				playerHistbtnPanel.setVisible(false);
+				finalScorePanel.setVisible(false);
+				lblBelcherPic.setVisible(false);
+				txtCongrats.setVisible(false);
+				txtPersonalityReport.setVisible(false);
+				txtfldUserName.setVisible(false);
+				txtPlayerHistReport.setVisible(true);
+				reportPanel.setBounds(965, 11, 468, 550);
+				try {
+					History.loadList();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -470,5 +624,82 @@ public class Anomalous extends JFrame {
 		
 		
 		
+		
+		
+		
+//		try {
+//			story = new StoryLinkedList();
+//			story.printList();
+//		} catch (SQLException e2) {
+//			e2.printStackTrace();
+//		}
+		
+		
+		
+		
+		
+		
+		
+
+		
+//		try {
+//			player.saveData();
+//		} catch (SQLException e1) {
+//			e1.printStackTrace();
+//		}
+		
+		
+		
+		
+		
+		
+		
+//		String dialupSound = "dialup.wav";
+//		musicStuff musicObject = new musicStuff();
+//		musicObject.playMusic(dialupSound);
+		
+		
+		
+		
+		
+		
+		
+//			
+			
+		
+	}
+
+	public String[] report(int highScore) {
+		String[] stuff = new String[2];
+		String tina = "You finished the game with the highest score in the kindness trait.  This means you are just like Tina Belcher - sweet, smart, and sensual! ";
+		String louise = "You finished the game with the highest score in the saddistic trait.  This means you are just like Louise Belcher - pure evil in the cutest of ways.";
+		String gene = "You finished the game with the highest score in the adventurous trait.  This means you are just like Gene Belcher - a funloving musical genius.";
+		
+		String tImg = "/images/tina-original.jpeg";
+		String lImg = "/images/louise-hell.gif";
+		String gImg = "/images/gene-guitarhero.jpeg";
+		
+		if(highScore == 0) {
+			stuff[0] = tina;
+			stuff[1] = tImg;
+			return stuff;
+		}
+		else if(highScore == 1){
+			stuff[0] = louise;
+			stuff[1] = lImg;
+			return stuff;
+		}
+		else if(highScore == 2) {
+			stuff[0] = gene;
+			stuff[1] = gImg;
+			return stuff;
+		}
+		else {
+			stuff[0] = tina;
+			stuff[1] = tImg;
+			return stuff;
+		}
 	}
 }
+
+

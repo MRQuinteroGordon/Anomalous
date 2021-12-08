@@ -1,17 +1,15 @@
 package main;
 
-//import java.io.BufferedReader;
-//import java.io.File;
-//import java.io.FileReader;
-//import java.io.IOException;
 import java.sql.*;
 
 public class StoryLinkedList {
 	
 	static StoryNode head;
+//	StoryNode head;
 	private String dbLogin = "javauser";
 	private String dbPassword = "j4v4us3r?";
 	private String ConnectionString = "jdbc:mysql://127.0.0.1:3306/anomalous?serverTimezone=UTC";
+	int counter = 0;
 	
 	public StoryLinkedList() throws SQLException {
 		loadList(this.ConnectionString, this.dbLogin, this.dbPassword);
@@ -122,8 +120,8 @@ public class StoryLinkedList {
 //                    	{
 //                    		actionTxt[k] = dbResults[i][k+4];
 //                    	}
-            //        	append(storyPart, storyTxt, actionTxt);
-                    	append(storyPart, null, null);
+//                    	append(storyPart, storyTxt, actionTxt);
+                    	append(storyPart, storyTxt, actionTxt);
                     	//System.out.println("\nthe head after the append is:");
                     	//printNode(head);
                     }
@@ -153,7 +151,7 @@ public class StoryLinkedList {
 		stuffTxt2[1] = "mah";
 		stuffTxt2[2] = "darlin'";
 		//append(stuffNum, stuffTxt, stuffTxt2);
-		append(stuffNum, null, null);
+//		append(stuffNum, null, null);
 
 		stuffNum = 44;
 		stuffTxt[0] = "Yo";
@@ -163,7 +161,7 @@ public class StoryLinkedList {
 		stuffTxt2[1] = "Zo";
 		stuffTxt2[2] = "Hoe";
 		//append(stuffNum, stuffTxt, stuffTxt2);
-		append(stuffNum, null, null);
+//		append(stuffNum, null, null);
 
 		System.out.println();
 		printList();
@@ -182,15 +180,35 @@ public class StoryLinkedList {
 		}
 		//System.out.println("\n\nprinting list...\n\n");
 		StoryNode current = head;
-		System.out.print("Head: [" + current + "] " + current.storyPart + " ");
+		System.out.print("Head: [" + current + "] " + current.storyPart + " " /*+ current.storyTxt[0]*/);
 		//printNode(current);
 		while (current.next != null) {
 			current = current.next;
 			System.out.print("[" + current + "] ");
-			System.out.print(current.storyPart + " > ");
+			System.out.print(current.storyPart + current.storyTxt[0] + " > ");
 			//printNode(current);
 		}
 		System.out.println("null");
+	}
+	
+	public StoryNode traverseList() {
+		if (head == null) {
+			System.out.println("List is empty.");
+			return null;
+		}
+		StoryNode current = head;
+		if (this.counter == 0) {
+			this.counter++;
+			return current;
+		}
+		else {
+			for (int x = 1; x <= this.counter; x++) {
+				current = current.next;
+			}
+			this.counter++;
+			return current;
+		}
+		
 	}
 	
 	
