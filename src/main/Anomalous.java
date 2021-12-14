@@ -56,6 +56,7 @@ public class Anomalous extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -73,6 +74,8 @@ public class Anomalous extends JFrame {
 	 * Create the frame.
 	 */
 	public Anomalous() {
+		int nanoDivisor = 1000000000;
+		long start = System.nanoTime();
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Anomalous.class.getResource("/images/logo.png")));
 		setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
@@ -422,6 +425,11 @@ public class Anomalous extends JFrame {
 		reportPanel.setVisible(false);
 		finalScorePanel.setVisible(false);
 		
+		long end = System.nanoTime();
+		long duration = end - start;
+		double seconds = (double)duration/nanoDivisor;
+		System.out.printf("%n%nStarting Game Process Duration: %,d nanoseconds [%.10f seconds]%n", duration, seconds);
+		
 		
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
@@ -435,7 +443,13 @@ public class Anomalous extends JFrame {
 					player = new Player(playerName, ungen.username);
 				}
 				else {
+					int nanoDivisor = 1000000000;
+					long start = System.nanoTime();
 					UNGenerator ungen = new UNGenerator(playerName);
+					long end = System.nanoTime();
+					long duration = end - start;
+					double seconds = (double)duration/nanoDivisor;
+					System.out.printf("%n%nUsername Generator Process Duration: %,d nanoseconds [%.10f seconds]%n", duration, seconds);
 					player = new Player(playerName, ungen.username);
 				}
 				
