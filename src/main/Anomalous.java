@@ -111,8 +111,9 @@ public class Anomalous extends JFrame {
 		avatarPanel.add(lbl_powerby);
 		
 		JLabel lblAvatar = new JLabel("");
+		lblAvatar.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAvatar.setIcon(new ImageIcon(Anomalous.class.getResource("/images/tina-original.jpeg")));
+		lblAvatar.setIcon(new ImageIcon(Anomalous.class.getResource("/images/avatar.png")));
 		lblAvatar.setBounds(16, 14, 67, 64);
 		avatarPanel.add(lblAvatar);
 		lblAvatar.setVisible(false);
@@ -307,7 +308,7 @@ public class Anomalous extends JFrame {
 		txtfldUserName.setText("Username!");
 		txtfldUserName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldUserName.setForeground(new Color(153, 0, 0));
-		txtfldUserName.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 20));
+		txtfldUserName.setFont(new Font("Nineteen Ninety Seven", Font.PLAIN, 18));
 		txtfldUserName.setEditable(false);
 		txtfldUserName.setBounds(111, 39, 246, 33);
 		reportPanel.add(txtfldUserName);
@@ -315,7 +316,7 @@ public class Anomalous extends JFrame {
 		JTextArea txtPlayerHistReport = new JTextArea();
 		txtPlayerHistReport.setBackground(SystemColor.activeCaption);
 		txtPlayerHistReport.setForeground(SystemColor.desktop);
-		txtPlayerHistReport.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 12));
+		txtPlayerHistReport.setFont(new Font("Nineteen Ninety Three", Font.PLAIN, 10));
 		txtPlayerHistReport.setEditable(false);
 		txtPlayerHistReport.setBounds(6, 6, 456, 550);
 		reportPanel.add(txtPlayerHistReport);
