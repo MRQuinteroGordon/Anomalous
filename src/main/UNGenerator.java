@@ -1,5 +1,10 @@
 package main;
-
+/**
+ * This is the username generator class.  It contains a 2-dimensional array that stores different elements the program
+ * will randomly choose from to concatenate into a username. 
+ * @author Michelle Gordon
+ * 
+ */
 import javax.swing.JOptionPane;
 
 public class UNGenerator {
@@ -19,7 +24,12 @@ public class UNGenerator {
 		this.playername = name;
 		generateUN(this.playername);
 	}
-	
+	/**
+	 * This method converts the first three characters of the player's name into three separate numerical values (based on the
+	 * ASCII text codes) and performs a calculation on those values to come up with three numbers that will become the index numbers
+	 * chosen for each sub-array.  
+	 * @param name
+	 */
 	private void generateUN(String name) {
 		try {
 			char c1 = name.charAt(0);

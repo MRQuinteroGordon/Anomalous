@@ -1,5 +1,8 @@
 package main;
-
+/**
+ * DO NOT USE THIS CLASS! IT DOES NOT WORK
+ * 
+ */
 import java.sql.*;
 
 public class StoryLinkedList {

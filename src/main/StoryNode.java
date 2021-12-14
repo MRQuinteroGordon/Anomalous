@@ -1,5 +1,9 @@
 package main;
-
+/** DO NOT USE THIS CLASS, IT DOES NOT WORK!
+ * 
+ * @author michelle
+ *
+ */
 public class StoryNode {
 	//updated version of node
 	StoryNode next;

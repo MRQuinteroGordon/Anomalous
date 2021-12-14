@@ -1,7 +1,10 @@
 package main;
-
+/**
+ * This is the node each chunk of the story (and it's respective choices of actions) will be stored in. 
+ * @author Michelle Gordon
+ *
+ */
 public class StoryNode2 {
-	//testing out making a node without arrays
 	StoryNode2 next;
 	int storyPart;
 	String storyTxta;

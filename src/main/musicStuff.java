@@ -1,5 +1,9 @@
 package main;
-
+/**
+ * This class was made to have the game produce the sound of a dial-up modem when "signing in".  
+ * Unfortunately, I was not able to get it to work. 
+ * @author Michelle Gordon
+ */
 import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;

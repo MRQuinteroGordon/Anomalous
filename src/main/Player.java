@@ -1,5 +1,9 @@
 package main;
-
+/**
+ * This is the player class/object that will be instantiated at the start of the game in order to hold the player's
+ * information and track their scores. 
+ * @author Michelle Gordon
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 //import java.sql.ResultSet;
@@ -19,8 +23,6 @@ public class Player {
 	public Player(String pname, String puname) {
 		LocalDate myObj = LocalDate.now(); // Create a date object
 		this.date = myObj.toString();
-//	    System.out.println(myObj); // Display the current date
-//		System.out.println("today's date is: " + this.date);
 		if(pname.length() > 11) {
 			this.name = pname.substring(0, 11);
 		}
@@ -31,18 +33,10 @@ public class Player {
 		
 		this.username = puname;
 	}
-	
-	/*
-	 *       conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/business", "Manish", "123456");
-      System.out.println("Connection is created successfully:");
-      stmt = (Statement) conn.createStatement();
-      String query1 = "INSERT INTO InsertDemo " + "VALUES (1, 'John', 34)";
-      stmt.executeUpdate(query1);
-      query1 = "INSERT INTO InsertDemo " + "VALUES (2, 'Carol', 42)";
-      stmt.executeUpdate(query1);
-      System.out.println("Record is inserted in the table successfully..................");
+	/**
+	 * this method will insert a record containing the player's current data into the database.
+	 * @throws SQLException
 	 */
-	
 	public void saveData() throws SQLException {
 		String connectionString = "jdbc:mysql://127.0.0.1:3306/anomalous?serverTimezone=UTC";
         String dbLogin = "javauser";
@@ -75,11 +69,18 @@ public class Player {
         }
         conn.close();
 	}
-	
+	/**
+	 * this method prints out the player's current scores to the console.
+	 * This was used to test the accuracy of the data as the player moves through the game.
+	 */
 	public void printScores() {
 		System.out.printf("Current scores are as follows:\nKind:\t%d\nSaddistic:\t%d\nAdventurous:\t%d\n", this.kind, this.saddistic, this.adventurous);
 	}
-	
+	/**
+	 * This method returns a value corresponding to the personality trait that has the highest score. 
+	 * In the event of a tie across all scores, the value for the kind trait is returned. 
+	 * @return
+	 */
 	public int max() {
 		//PUT IN CODE TO SEE WHICH SCORE IS HIGHEST
 		if(this.kind > this.saddistic && this.kind > this.adventurous) {

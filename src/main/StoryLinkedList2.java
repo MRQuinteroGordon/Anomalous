@@ -1,4 +1,9 @@
 package main;
+/**
+ * This class creates and manages the linked list containing each portion of the story. 
+ * The story content will be extracted from a database. 
+ * @author Michelle Gordon
+ */
 import java.sql.*;
 
 public class StoryLinkedList2 {
@@ -12,7 +17,14 @@ public class StoryLinkedList2 {
 		loadList(this.ConnectionString, this.dbLogin, this.dbPassword);
 	}
 
-	
+	/**
+	 * This  method connects to the Anomalous database and extracts the story and action data into
+	 * an array that will then be fed into the append method to build the linked list. 
+	 * @param connString
+	 * @param dbLogin
+	 * @param dbPw
+	 * @throws SQLException
+	 */
 	public void loadList (String connString, String dbLogin, String dbPw) throws SQLException{
 		int partNum;
 		String storyA;
@@ -55,9 +67,7 @@ public class StoryLinkedList2 {
                     System.out.printf("Number of Array Rows: %d%n", dbResults.length);
                     System.out.printf("Number of Array Columns: %d%n", dbResults[0].length);
                     System.out.println();
-                    
-                    
-                    //THIS MIGHT BE THE F-ED UP LOOP YOU NEED TO CHECK ON
+
                     for (int i = 0; i < dbResults.length; i++) {
                     	
                     	partNum = Integer.valueOf(dbResults[i][0]);
@@ -92,7 +102,16 @@ public class StoryLinkedList2 {
 		conn.close();
 	}
 
-
+	/**
+	 * This method takes all the node elements and either creates the linked list head or appends nodes to the pre-existing list.
+	 * @param partNum
+	 * @param storyA
+	 * @param storyB
+	 * @param storyC
+	 * @param actionA
+	 * @param actionB
+	 * @param actionC
+	 */
 	private void append(int partNum, String storyA, String storyB, String storyC, String actionA, String actionB,	 String actionC) {
 		if (head == null) {
 			head = new StoryNode2(partNum, storyA, storyB, storyC, actionA, actionB, actionC);
@@ -104,7 +123,10 @@ public class StoryLinkedList2 {
 		}
 		current.next = new StoryNode2(partNum, storyA, storyB, storyC, actionA, actionB, actionC);
 	}
-
+	/**
+	 * this method is used to traverse through the story (by traversing through the linked list)
+	 * @return
+	 */
 	public StoryNode2 traverseList() {
 		if (head == null) {
 			System.out.println("List is empty.");

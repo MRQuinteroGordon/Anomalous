@@ -1,4 +1,9 @@
 package main;
+/**
+ * Main driver program for the Anomalous game. 
+ * @author Michelle Gordon
+ * @version 2.4
+ */
 import java.util.concurrent.TimeUnit;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -430,7 +435,11 @@ public class Anomalous extends JFrame {
 		double seconds = (double)duration/nanoDivisor;
 		System.out.printf("%n%nStarting Game Process Duration: %,d nanoseconds [%.10f seconds]%n", duration, seconds);
 		
-		
+		/**
+		 * Creates a listener for the start button
+		 * which will run the username generator method
+		 * when clicked.
+		 */
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -458,14 +467,7 @@ public class Anomalous extends JFrame {
 
 				topPanel.setVisible(false);
 				startPanel.setVisible(false);
-				JOptionPane.showMessageDialog(null, "Signing in... ");
-//				try {
-//					TimeUnit.SECONDS.sleep(1);
-//				} catch (InterruptedException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-				
+				JOptionPane.showMessageDialog(null, "Signing in... ");				
 				storyPanel.setVisible(true);
 				buttonPanel.setVisible(true);
 				lblAvatar.setVisible(true);
@@ -478,7 +480,14 @@ public class Anomalous extends JFrame {
 				}
 				
 
-				
+				/**
+				 * Listener for the Option-A button.  This will be the same code as the 
+				 * Option-B and Option-C button listeners, except that this will augment
+				 * the player's kind score and pull up story text version A.  
+				 * Once the player has gone through all of the story parts 
+				 * the screen will change (by setting certain panes to visible and others to
+				 * invisible), and present the final report.  
+				 */
 				btnOptA.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
@@ -512,14 +521,11 @@ public class Anomalous extends JFrame {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
-							btnPlayerHist.setVisible(true);
-							
-						}
-						
-
-						
+							btnPlayerHist.setVisible(true);	
+						}	
 					}
 				});
+				
 				
 				btnOptB.addMouseListener(new MouseAdapter() {
 					@Override
@@ -558,13 +564,11 @@ public class Anomalous extends JFrame {
 							
 							
 						}
-						
-//						txtStory.setText(story.head.storyTxt[player.max()]);
-//						txtStory.setText(story.traverseList().storyTxt[player.max()]);
 						player.printScores();
 						System.out.println("max is: " + player.max());
 					}
 				});
+				
 				
 				btnOptC.addMouseListener(new MouseAdapter() {
 					@Override
@@ -602,11 +606,16 @@ public class Anomalous extends JFrame {
 							btnPlayerHist.setVisible(true);
 						}
 					}
-				});
-					
+				});	
 			}
 		});
 		
+		
+		/**
+		 * This button listener will show the user a report with data from
+		 * previous players of the game, including the date they played and
+		 * the different personality scores they ended with. 
+		 */
 		btnPlayerHist.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -624,86 +633,25 @@ public class Anomalous extends JFrame {
 				
 				//CALL METHOD THAT INSERTS DATA INTO txtPlayerHistReport
 				txtPlayerHistReport.setText(histReport());
-//				try {
-//					History.loadList();
-//				} catch (SQLException e1) {
-//					e1.printStackTrace();
-//				}
 			}
 		});
-		
-//		int x = 0;
-//		do {
-//			String max = player.max();
-//			if (max == "kind") {
-//				System.out.println(player.max());
-//				System.out.println("stuff!");
-////				txtStory.setText(story.head.storyTxt[0]);
-//				x++;
-//			}
-//			else if (max == "saddistic") {
-//				//stuff
-//				System.out.print(max);
-//				x++;
-//			}
-//			else {
-//				System.out.print(max);
-//				x++;
-//			}
-//				//LEFT OFF HERE LEFT OFF HERE LEFT OFF HERE LEFT OFF HERE!!!!!!!
-//			
-//		} while (x <= 10);
-		
-
-		
-		
-		
-		
-		
-		
-		
-//		try {
-//			story = new StoryLinkedList();
-//			story.printList();
-//		} catch (SQLException e2) {
-//			e2.printStackTrace();
-//		}
-		
-		
-		
-		
-		
-		
-		
-
-		
-//		try {
-//			player.saveData();
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}
-		
-		
-		
-		
-		
 		
 		
 //		String dialupSound = "dialup.wav";
 //		musicStuff musicObject = new musicStuff();
-//		musicObject.playMusic(dialupSound);
-		
-		
-		
-		
-		
-		
-		
-//			
+//		musicObject.playMusic(dialupSound);	
 			
 		
 	}
-
+	
+	/**
+	 * this method produces the content for the final report screen.  This includes the description and file location
+	 * address for the image of the Belcher character you are matched up with. 
+	 * The highScore parameter is what tells the method which image and text to select.  
+	 * The content and image file location info is return as a string array.
+	 * @param highScore
+	 * @return
+	 */
 	public String[] report(int highScore) {
 		String[] stuff = new String[2];
 		String tina = "You finished the game with the highest score in the kindness trait.  This means you are just like Tina Belcher - sweet, smart, and sensual! ";
@@ -736,7 +684,11 @@ public class Anomalous extends JFrame {
 		}
 	}
 	
-	
+	/**
+	 * This method produces the content for the player history report.  It calls a method (loadList)
+	 * that loads data from the database into an array that can then be printed out on the screen.  
+	 * @return
+	 */
 	public String histReport() {
 		//txtPlayerHistReport is where report should be populated
 

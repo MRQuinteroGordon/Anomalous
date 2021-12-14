@@ -1,5 +1,8 @@
 package main;
-
+/**
+ * this is the class that connects to the database to retrieve all of the historical player data. 
+ * @author Michelle Gordon
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,19 +15,16 @@ public class History {
 	private static String dbPassword = "j4v4us3r?";
 	private static String ConnectionString = "jdbc:mysql://127.0.0.1:3306/anomalous?serverTimezone=UTC";
 	
-	
+	/**
+	 * this is the method that connects to the database and loads the query results into an array
+	 * to then print each record out on the screen.
+	 * @return
+	 * @throws SQLException
+	 */
 	public static String[][] loadList () throws SQLException{
 		String dbLogin = getDbLogin();
 		String dbPw = getDbPassword();
 		String connString = getConnectionString();
-		//fields in database: game_id, date_played, player_name, username, k_score, s_score, a_score
-//		int game_id;
-//		String date;
-//		String name;
-//		String username;
-//		int k_score;
-//		int s_score;
-//		int a_score;
 		String[][] dbResults = null;
 		
 		Connection conn = null;
